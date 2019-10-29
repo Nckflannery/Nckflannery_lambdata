@@ -9,7 +9,7 @@ REQUIRED = [
 with open("README.md", "r") as fh:
     LONG_DESCRIPTION = fh.read()
     setuptools.setup(
-    name="lambdata-Nckflannery",
+    name="lambdata_Nckflannery",
     version = "0.1.1",
     author = "Nckflannery",
     description = "a collection of data science helper functions",
