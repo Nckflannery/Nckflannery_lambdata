@@ -23,7 +23,7 @@ def train_val_test_split(df, test_size=0.2, val_size=0.2):
     initial = df.drop(test.index)
     size_v = round(val_size * len(initial))
     val = initial.sample(size_v)
-    train = df.drop(val.index)
+    train = initial.drop(val.index)
     return train, val, test
 
 
