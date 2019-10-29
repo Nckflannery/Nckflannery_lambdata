@@ -1,4 +1,5 @@
 import pandas as pd
+# Sample DataFrame to use for testing functions
 columns = ['Year', 'Name', 'YearName', 'College', 'POS', 'Height',
            'Weight', 'Hand Size', 'Arm Length', 'Wonderlic',
            '40 Yard', 'Bench Press', 'Vert Leap', 'Broad Jump',
