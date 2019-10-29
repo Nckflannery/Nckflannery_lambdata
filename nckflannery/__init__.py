@@ -38,3 +38,46 @@ default=False
     if sum is True:
         return nulls.sum()
     return nulls
+
+
+def iqr_outliers(x):
+    '''
+    A function to find and remove outliers from a given list
+    Prints outliers and returns new list
+    '''
+    # sort the function
+    x.sort()
+    # If list is even
+    if len(x) % 2 == 0:
+        # Get midpoint
+        mid = round(len(x)/2)
+        # Get first quartile
+        first = (x[int(mid/2)] + x[int(mid/2)-1])/2
+        # Get third quartile
+        third = (x[len(x)-int(mid/2)] + x[len(x)-(int((mid-1)/2))])/2
+    # If list is odd
+    else:
+        # Get midpoint
+        mid = round((len(x)+1)/2)
+        # Get first quartile
+        first = x[int((mid-1)/2)]
+        # Get third quartile
+        third = x[len(x) - int((mid-1)/2)]
+    # Get interquartile range
+    iqr = third - first
+    # Get 1.5*IQR below first quartile
+    low = first - (1.5 * iqr)
+    # Get 1.5*IQR above third quartile
+    high = third + (1.5 * iqr)
+    # Print which items are outliers
+    # Create new list for return without outliers
+    new = []
+    for i in range(0, len(x)):
+        if x[i] < low:
+            print(f'{x[i]} is a low outlier')
+        elif x[i] > high:
+            print(f'{x[i]} is a high outlier')
+        else:
+            new.append(x[i])
+    print('List without outliers:')
+    return new
