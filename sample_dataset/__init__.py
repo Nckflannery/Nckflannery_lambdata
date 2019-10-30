@@ -1,13 +1,12 @@
 '''
 A sample dataset to use with functions in nckflannery
 '''
-import os
-from os.path import dirname, join
+from os.path import dirname, join, abspath
 import pandas as pd
 
 
 def load_NFL_data():
-    module_path = dirname(__file__)
+    module_path = dirname(abspath( __file__ ))
     file_path = join(module_path, 'data', 'NFLCombineData.csv')
     columns = ['Year', 'Name', 'YearName', 'College', 'POS', 'Height',
                'Weight', 'Hand Size', 'Arm Length', 'Wonderlic',

@@ -9,7 +9,6 @@ nckflannery-lambdata = {editable = true,path = "."}
 
 [packages]
 pandas = "*"
-numpy = "*"
 
 [requires]
 python_version = "3.7"

@@ -4,15 +4,13 @@ lambdata - a collection of datascience helper functions for lambdaschool
 import setuptools
 
 REQUIRED = [
-    "pandas",
-    "numpy",
-    "os"
+    "pandas"
 ]
 with open("README.md", "r") as fh:
     LONG_DESCRIPTION = fh.read()
     setuptools.setup(
     name="Nckflannery_lambdata",
-    version = "0.2.21",
+    version = "0.2.3",
     author = "Nckflannery",
     description = "A collection of data science helper functions",
     long_description = LONG_DESCRIPTION,
