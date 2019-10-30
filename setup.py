@@ -5,13 +5,14 @@ import setuptools
 
 REQUIRED = [
     "pandas",
-    "numpy"
+    "numpy",
+    "os"
 ]
 with open("README.md", "r") as fh:
     LONG_DESCRIPTION = fh.read()
     setuptools.setup(
     name="Nckflannery_lambdata",
-    version = "0.2.15",
+    version = "0.2.20",
     author = "Nckflannery",
     description = "A collection of data science helper functions",
     long_description = LONG_DESCRIPTION,

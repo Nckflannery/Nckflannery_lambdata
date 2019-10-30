@@ -2,7 +2,7 @@
 A collection of functions for DS8-Unit3-Sprint1
 '''
 
-import pandas as pd
+import pandas
 
 
 def train_val_test_split(df, test_size=0.2, val_size=0.2):

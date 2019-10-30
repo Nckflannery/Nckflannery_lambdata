@@ -5,6 +5,7 @@ verify_ssl = true
 
 [dev-packages]
 twine = "*"
+nckflannery-lambdata = {editable = true,path = "."}
 
 [packages]
 pandas = "*"
