@@ -47,37 +47,63 @@ def iqr_outliers(x):
     '''
     # sort the function
     x.sort()
-    # If list is even
-    if len(x) % 2 == 0:
-        # Get midpoint
-        mid = round(len(x)/2)
-        # Get first quartile
-        first = (x[int(mid/2)] + x[int(mid/2)-1])/2
-        # Get third quartile
-        third = (x[len(x)-int(mid/2)] + x[len(x)-(int((mid-1)/2))])/2
-    # If list is odd
+    # If list is too short
+    if len(x) <= 3:
+        print('List too small!')
+    # If list is length 4
+    elif len(x) == 4:
+        first = x[0]
+        third = x[2]
+        # Get interquartile range
+        iqr = third - first
+        # Get 1.5*IQR below first quartile
+        low = first - (1.5 * iqr)
+        # Get 1.5*IQR above third quartile
+        high = third + (1.5 * iqr)
+        # Print which items are outliers
+        # Create new list for return without outliers
+        new = []
+        for i in range(0, len(x)):
+            if x[i] < low:
+                print(f'{x[i]} is a low outlier')
+            elif x[i] > high:
+                print(f'{x[i]} is a high outlier')
+            else:
+                new.append(x[i])
+        print('List without outliers:')
+        return new
     else:
-        # Get midpoint
-        mid = round((len(x)+1)/2)
-        # Get first quartile
-        first = x[int((mid-1)/2)]
-        # Get third quartile
-        third = x[len(x) - int((mid-1)/2)]
-    # Get interquartile range
-    iqr = third - first
-    # Get 1.5*IQR below first quartile
-    low = first - (1.5 * iqr)
-    # Get 1.5*IQR above third quartile
-    high = third + (1.5 * iqr)
-    # Print which items are outliers
-    # Create new list for return without outliers
-    new = []
-    for i in range(0, len(x)):
-        if x[i] < low:
-            print(f'{x[i]} is a low outlier')
-        elif x[i] > high:
-            print(f'{x[i]} is a high outlier')
+        # If list is even
+        if len(x) % 2 == 0:
+            # Get midpoint
+            mid = round(len(x)/2)
+            # Get first quartile
+            first = (x[int(mid/2)] + x[int(mid/2)-1])/2
+            # Get third quartile
+            third = (x[len(x)-int(mid/2)] + x[len(x)-(int((mid-1)/2))])/2
+        # If list is odd
         else:
-            new.append(x[i])
-    print('List without outliers:')
-    return new
+            # Get midpoint
+            mid = round((len(x)+1)/2)
+            # Get first quartile
+            first = x[int((mid-1)/2)]
+            # Get third quartile
+            third = x[len(x) - int((mid-1)/2)]
+        # Get interquartile range
+        iqr = third - first
+        # Get 1.5*IQR below first quartile
+        low = first - (1.5 * iqr)
+        # Get 1.5*IQR above third quartile
+        high = third + (1.5 * iqr)
+        # Print which items are outliers
+        # Create new list for return without outliers
+        new = []
+        for i in range(0, len(x)):
+            if x[i] < low:
+                print(f'{x[i]} is a low outlier')
+            elif x[i] > high:
+                print(f'{x[i]} is a high outlier')
+            else:
+                new.append(x[i])
+        print('List without outliers:')
+        return new
