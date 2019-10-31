@@ -1,6 +1,7 @@
 # Nckflannery_lambdata
-A package of useful functions for Data Science
-
+A package of useful functions for Data Science  
+Can be found at: https://test.pypi.org/project/Nckflannery-lambdata/  
+Or `pip install -i https://test.pypi.org/simple/ Nckflannery-lambdata`
 # Modules:
 
 ## sample_dataset
