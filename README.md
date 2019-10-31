@@ -9,9 +9,8 @@ Contains Functions:
 * train_val_test_split : Takes dataframe and splits into three
     smaller dataframes for train/val/test
 * iqr_outliers : Function to find and remove outliers from a 
-    given list
+    given list, then prints outliers and returns new sorted list
 
 #### sample_dataset
 Contains a function to load a sample dataset to work with  
-Example: `df = load_NFL_data()`   
-<sub><sup>*Currently not working!*</sup></sub>
+Example: `df = load_NFL_data()`

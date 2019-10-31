@@ -3,6 +3,7 @@ A collection of functions for DS8-Unit3-Sprint1
 '''
 
 import pandas
+import numpy as np
 
 
 def train_val_test_split(df, test_size=0.2, val_size=0.2):
@@ -21,7 +22,7 @@ def train_val_test_split(df, test_size=0.2, val_size=0.2):
     size_t = round(test_size * len(df))
     test = df.sample(size_t)
     initial = df.drop(test.index)
-    size_v = round(val_size * len(initial))
+    size_v = round(val_size * len(df))
     val = initial.sample(size_v)
     train = initial.drop(val.index)
     return train, val, test
@@ -40,70 +41,33 @@ def is_null(df, sum=False):
     return nulls
 
 
-def iqr_outliers(x):
+def iqr_outliers(x, constant=1.5):
     '''
     A function to find and remove outliers from a given list
-    Prints outliers and returns new list
+    Prints outliers and returns sorted new list without outliers
     '''
-    # sort the function
-    x.sort()
-    # If list is too short
-    if len(x) <= 3:
-        print('List too small!')
-    # If list is length 4
-    elif len(x) == 4:
-        first = x[0]
-        third = x[2]
-        # Get interquartile range
-        iqr = third - first
-        # Get 1.5*IQR below first quartile
-        low = first - (1.5 * iqr)
-        # Get 1.5*IQR above third quartile
-        high = third + (1.5 * iqr)
-        # Print which items are outliers
-        # Create new list for return without outliers
-        new = []
-        for i in range(0, len(x)):
-            if x[i] < low:
-                print(f'{x[i]} is a low outlier')
-            elif x[i] > high:
-                print(f'{x[i]} is a high outlier')
-            else:
-                new.append(x[i])
-        print('List without outliers:')
-        return new
-    else:
-        # If list is even
-        if len(x) % 2 == 0:
-            # Get midpoint
-            mid = round(len(x)/2)
-            # Get first quartile
-            first = (x[int(mid/2)] + x[int(mid/2)-1])/2
-            # Get third quartile
-            third = (x[len(x)-int(mid/2)] + x[len(x)-(int((mid-1)/2))])/2
-        # If list is odd
+    a = np.array(x)
+    # Sort list
+    a.sort()
+    # Get third quartile
+    third = np.percentile(a, 75)
+    # Get first quartile
+    first = np.percentile(a, 25)
+    # Get interquartile range (iqr)
+    iqr = (third - first) * constant
+    # Create set of first and third quartiles
+    quart_set = (first - iqr, third + iqr)
+    # Create new list for return
+    new = []
+    for i in a.tolist():
+        # If item is outside of lower bound print
+        if i <= quart_set[0]:
+            print(f'{i} is a low outlier')
+        # If item is outside of upper bount print
+        elif i >= quart_set[1]:
+            print(f'{i} is a high outlier')
+        # If item is within bounds, append to list
         else:
-            # Get midpoint
-            mid = round((len(x)+1)/2)
-            # Get first quartile
-            first = x[int((mid-1)/2)]
-            # Get third quartile
-            third = x[len(x) - int((mid-1)/2)]
-        # Get interquartile range
-        iqr = third - first
-        # Get 1.5*IQR below first quartile
-        low = first - (1.5 * iqr)
-        # Get 1.5*IQR above third quartile
-        high = third + (1.5 * iqr)
-        # Print which items are outliers
-        # Create new list for return without outliers
-        new = []
-        for i in range(0, len(x)):
-            if x[i] < low:
-                print(f'{x[i]} is a low outlier')
-            elif x[i] > high:
-                print(f'{x[i]} is a high outlier')
-            else:
-                new.append(x[i])
-        print('List without outliers:')
-        return new
+            new.append(i)
+    print('List without outliers:')
+    return new
