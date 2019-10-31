@@ -7,7 +7,7 @@ import pandas as pd
 
 def load_NFL_data():
     module_path = dirname(abspath( __file__ ))
-    file_path = join(module_path, 'data', 'NFLCombineData.csv')
+    file_path = join(module_path,'data', 'NFLCombineData.csv')
     columns = ['Year', 'Name', 'YearName', 'College', 'POS', 'Height',
                'Weight', 'Hand Size', 'Arm Length', 'Wonderlic',
                '40 Yard', 'Bench Press', 'Vert Leap', 'Broad Jump',

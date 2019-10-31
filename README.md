@@ -12,4 +12,5 @@ Contains Functions:
     given list
 
 #### sample_dataset
-Contains a sample dataset to work with
+Contains a function to load a sample dataset to work with
+Examplke: df = load_NFL_data()
